@@ -7,6 +7,7 @@ using MyProject.Domain.Contracts.Services;
 using MyProject.Domain.Entities;
 using MyProject.Domain.ViewModel;
 using MyProject.Service;
+using NewStructureForBackEnd.Specification;
 
 namespace MyProject.Apis
 {
@@ -31,7 +32,13 @@ namespace MyProject.Apis
         }
 
 
-      
+
+        [HttpGet("GetAddressByCity")]
+        public async Task<IEnumerable<Address>> GetAddressByCity(string name)
+        {
+            AddressService = _serviceFactory.AddressService;
+            return await AddressService.GetALL(new AddressSpecification(name));
+        }
 
 
         [HttpPost("AddNewAddress")]
