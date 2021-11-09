@@ -24,7 +24,7 @@ namespace MyProject.Service
 
         public async Task<IEnumerable<Customer>> GetALL(ISpecification<Customer> spec = null)
         {
-            return await _repositoryFactory.Repository.list(spec);
+            return await _repositoryFactory.Repository.List(spec);
         }
 
         public async Task<Customer> GetById(long id)

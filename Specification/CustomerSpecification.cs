@@ -35,5 +35,5 @@ namespace NewStructureForBackEnd.Specification
         //{
         //    Criteria = i => i.NationalCode == NationalCode;
         //}
-    }
+    //}
 }

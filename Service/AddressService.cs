@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MyProject.Domain.Contracts.Services;
 using MyProject.Domain.Entities;
 using MyProject.Repositories;
+using NewStructureForBackEnd.Domain.Contracts.Repositories;
 
 namespace MyProject.Service
 {
@@ -21,6 +22,10 @@ namespace MyProject.Service
         public async Task<Address> AddNew(Address item)
         {
             return await _repositoryFactory.Repository.Add(item);
+        }
+        public async Task<IEnumerable<Address>> GetALL(ISpecification<Address> spec = null)
+        {
+            return await _repositoryFactory.Repository.List(spec);
         }
 
         public async Task<Address> GetById(long id)
