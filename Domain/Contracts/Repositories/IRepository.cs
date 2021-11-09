@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MyProject.Domain.Entities;
+using NewStructureForBackEnd.Domain.Contracts.Repositories;
 
 namespace MyProject.Domain.Contracts.Repositories
 {
@@ -10,7 +11,7 @@ namespace MyProject.Domain.Contracts.Repositories
     {
         Task<T> GetById<T>(long id) where T : BaseEntity;
         Task<T> GetById<T>(long id,string include) where T : BaseEntity;
-        //Task<List<T>> list<T>(Ispecification<T> spec = null) where T : BaseEntity;
+        Task<List<T>> list<T>(ISpecification<T> spec = null) where T : BaseEntity;
 
         Task<T> Add<T>(T entity) where T : BaseEntity;
         Task Update<T>(T entity) where T : BaseEntity;

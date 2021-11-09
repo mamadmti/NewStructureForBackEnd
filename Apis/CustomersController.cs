@@ -9,6 +9,7 @@ using MyProject.Domain.Entities;
 using MyProject.Domain.Enums;
 using MyProject.Domain.ViewModel;
 using MyProject.Service;
+using NewStructureForBackEnd.Specification;
 
 namespace MyProject.Apis
 {
@@ -32,6 +33,20 @@ namespace MyProject.Apis
             return await CustomerService.GetById(id);
         }
 
+
+        [HttpGet("GetCustomerByName")]
+        public async Task<IEnumerable<Customer>> GetCustomerByName(string name) 
+        {
+            CustomerService = _serviceFactory.CustomerService;
+            return await CustomerService.GetALL(new CustomerSpecification(name));
+        }
+
+        [HttpGet("GetCustomerByNationalCode")]
+        public async Task<IEnumerable<Customer>> GetCustomerByNationalCode(string nationalCode)
+        {
+            CustomerService = _serviceFactory.CustomerService;
+            return await CustomerService.GetALL(new CustomerSpecification(NationalCode:nationalCode));
+        }
         [HttpPost("AddNewCustomer")]
         public async Task<Customer> AddNewCustomer(CustomerDto item)
         {

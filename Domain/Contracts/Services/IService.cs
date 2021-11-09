@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NewStructureForBackEnd.Domain.Contracts.Repositories;
 
 namespace MyProject.Domain.Contracts.Services
 {
@@ -11,5 +12,6 @@ namespace MyProject.Domain.Contracts.Services
         Task<T> GetById(TId id);
         Task Remove(T item);
         Task Update(T item);
+        Task<IEnumerable<T>> GetALL(ISpecification<T> spec = null);
     }
 }

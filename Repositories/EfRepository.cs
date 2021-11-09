@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using MyProject.Domain.Contexts;
 using MyProject.Domain.Contracts.Repositories;
 using MyProject.Domain.Entities;
+using NewStructureForBackEnd.Domain.Contracts.Repositories;
 
 namespace MyProject.Repositories
 {
@@ -49,5 +50,17 @@ namespace MyProject.Repositories
             _dbContext.Entry(entity).State = EntityState.Modified;
 
         }
+
+        public async Task<List<T>> List<T>(ISpecification<T> spec = null) where T : BaseEntity
+        {
+
+            var query = _dbContext.Set<T>().AsQueryable();
+            if (spec != null)
+            {
+                query = query.Where(spec.Criteria);
+            }
+            return await query.ToListAsync();
+        }
+
     }
 }
